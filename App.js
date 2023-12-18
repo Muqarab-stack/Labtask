@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function App() {
+import Adminlogin from './Adminlogin';
+import Studentlogin from './Studentlogin';
+import StudentRegistration from './StudentRegistration';
+import CourseRegistration from './CourseResgistration';
+import Home from './Home';
+import Search from './Search';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="AdminLogin">
+        <Stack.Screen name="Adminlogin" component={Adminlogin} />
+        <Stack.Screen name="Studentlogin" component={Studentlogin} />
+        <Stack.Screen name="StudentRegistration" component={StudentRegistration} />
+        <Stack.Screen name="CourseRegistration" component={CourseRegistration}/>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Search" component={Search} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
